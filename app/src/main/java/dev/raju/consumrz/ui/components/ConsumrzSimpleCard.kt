@@ -1,15 +1,12 @@
 package dev.raju.consumrz.ui.components
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -21,25 +18,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.raju.consumrz.ui.R
-import dev.raju.consumrz.ui.theme.ColorBg
+import dev.raju.consumrz.ui.theme.CoinGradient
 import dev.raju.consumrz.ui.theme.ConsumrzUITheme
-import dev.raju.consumrz.ui.theme.Purple40
-import dev.raju.consumrz.ui.theme.PurpleBg
+import dev.raju.consumrz.ui.theme.PrimaryTextColor
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConsumrzSimpleCard(
     text: String = stringResource(id = R.string.app_name),
     styledText: String? = stringResource(id = R.string.app_name),
-    icon: Painter = painterResource(id = R.drawable.ic_star),
+    icon: Painter = painterResource(id = R.drawable.ic_coin_frame),
     cardBgColor: Color = Color.Transparent
 ) {
     Card(
@@ -60,7 +53,11 @@ fun ConsumrzSimpleCard(
                 Text(
                     text = buildAnnotatedString {
                         withStyle(
-                            style = SpanStyle(color = Color.Black)
+                            style = SpanStyle(
+                                color = PrimaryTextColor,
+                                fontSize = 14.sp,
+                                fontWeight = FontWeight.W500
+                            )
                         ) {
                             append(text)
                         }
@@ -70,23 +67,21 @@ fun ConsumrzSimpleCard(
                         } else {
                             withStyle(
                                 style = SpanStyle(
-                                    color = PurpleBg,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 20.sp
+                                    color = CoinGradient,
+                                    fontWeight = FontWeight.W700,
+                                    fontSize = 16.sp
                                 )
                             ) {
                                 append(styledText)
                             }
                         }
                     },
-                    fontFamily = FontFamily.SansSerif,
                 )
             }
 
-            Icon(
+            Image(
                 painter = icon,
                 contentDescription = "",
-                tint = Purple40
             )
         }
     }
@@ -99,7 +94,7 @@ fun ConsumrzSimpleCardPreview() {
         ConsumrzSimpleCard(
             text = "Join & Get 10/",
             styledText = "25",
-            icon = painterResource(id = R.drawable.ic_star)
+            icon = painterResource(id = R.drawable.ic_coin_frame)
         )
     }
 }

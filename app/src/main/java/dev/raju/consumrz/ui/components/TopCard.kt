@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.raju.consumrz.ui.R
+import dev.raju.consumrz.ui.theme.CardBg
 import dev.raju.consumrz.ui.theme.ColorBg
 import dev.raju.consumrz.ui.theme.ConsumrzUITheme
 
@@ -28,7 +29,7 @@ import dev.raju.consumrz.ui.theme.ConsumrzUITheme
 @Composable
 fun TopCard() {
     Card(
-        colors = CardDefaults.cardColors(containerColor = ColorBg),
+        colors = CardDefaults.cardColors(containerColor = CardBg),
         elevation = CardDefaults.cardElevation(2.dp),
         shape = RoundedCornerShape(8.dp),
     ) {
@@ -62,7 +63,7 @@ fun TopCard() {
                 ConsumrzSimpleCard(
                     text = "Join & Get 10/",
                     styledText = "25",
-                    icon = painterResource(id = R.drawable.ic_star),
+                    icon = painterResource(id = R.drawable.ic_coin_frame),
                     cardBgColor = Color.White
                 )
             }

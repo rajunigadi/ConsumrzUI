@@ -1,24 +1,17 @@
 package dev.raju.consumrz.ui.screen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.PageSize
-import androidx.compose.foundation.pager.PagerDefaults
-import androidx.compose.foundation.pager.PagerState
-import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -32,24 +25,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalProvider
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import dev.raju.consumrz.ui.R
-import dev.raju.consumrz.ui.components.ConsumrzIconCard
-import dev.raju.consumrz.ui.components.ConsumrzSimpleCard
 import dev.raju.consumrz.ui.components.ConsumrzTopAppBar
-import dev.raju.consumrz.ui.components.ContactCard
 import dev.raju.consumrz.ui.components.ContactDataCard
+import dev.raju.consumrz.ui.components.DealsCard
+import dev.raju.consumrz.ui.components.LoyaltyCard
 import dev.raju.consumrz.ui.components.TopCard
-import dev.raju.consumrz.ui.theme.ColorBg
+import dev.raju.consumrz.ui.data.communications
+import dev.raju.consumrz.ui.data.loyaltyItems
+import dev.raju.consumrz.ui.theme.CardBg
 import dev.raju.consumrz.ui.theme.ConsumrzUITheme
-import dev.raju.consumrz.ui.theme.Purple40
+import dev.raju.consumrz.ui.theme.SecondaryTextColor
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -79,37 +70,82 @@ fun MainScreen() {
             ) {
                 TopCard()
 
-                ContactDataCard()
+                ContactDataCard(communications)
 
                 Text(
                     text = "We work everyday from 7AM to 8PM",
                     textAlign = TextAlign.Start,
                     modifier = Modifier.padding(vertical = 8.dp),
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.labelLarge,
                 )
 
                 Text(
                     text = "We look forward to seeing you!",
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(bottom = 8.dp),
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.labelLarge
                 )
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = CardBg),
+                    elevation = CardDefaults.cardElevation(2.dp),
+                    shape = RoundedCornerShape(8.dp),
                 ) {
-                    Text(
-                        text = "Achievements",
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.titleMedium
-                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        Text(
+                            text = "Achievements",
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = SecondaryTextColor
+                        )
+                        Text(
+                            text = "Available deals",
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = SecondaryTextColor
+                        )
+                    }
 
-                    Text(
-                        text = "Available deals",
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.titleMedium
-                    )
+                    DealsCard()
+                }
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = CardBg),
+                    elevation = CardDefaults.cardElevation(2.dp),
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    Column {
+                        Row(
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "Loyalty Programs",
+                                textAlign = TextAlign.Start,
+                                modifier = Modifier.padding(vertical = 8.dp),
+                                style = MaterialTheme.typography.titleLarge
+                            )
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_question),
+                                contentDescription = ""
+                            )
+                        }
+
+                        LazyRow {
+                            items(loyaltyItems) {
+                                LoyaltyCard(
+                                    loyaltyItem = it,
+                                )
+                            }
+                        }
+                    }
                 }
             }
         }

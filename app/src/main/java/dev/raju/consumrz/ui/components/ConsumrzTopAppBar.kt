@@ -43,7 +43,7 @@ fun ConsumrzTopAppBar(
                 onNavigationIconClick.invoke()
             }) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_consumrz),
+                    painter = painterResource(id = R.drawable.ic_discounts),
                     contentDescription = stringResource(id = R.string.app_name),
                     tint = Purple40
                 )
