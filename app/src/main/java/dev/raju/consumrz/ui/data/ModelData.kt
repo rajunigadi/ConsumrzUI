@@ -5,6 +5,7 @@ import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import dev.raju.consumrz.ui.R
+import dev.raju.consumrz.ui.components.DealsItem
 import dev.raju.consumrz.ui.theme.PremiumCardBg
 import dev.raju.consumrz.ui.theme.RegularCardBg
 
@@ -27,6 +28,13 @@ data class CommunicationData(
     val texts: List<String> = emptyList(),
     val arrowIcon: ImageVector?
 )
+
+data class DealsComponentItem(
+    val titles: List<String>,
+    val deals: List<DealsItem>
+)
+
+data class DealsItem(val imageResource: Int, val text: String)
 
 
 // dummy data
@@ -86,3 +94,19 @@ val premiumLoyaltyItem = LoyaltyItem(
 )
 
 val loyaltyItems = listOf(regularLoyaltyItem, premiumLoyaltyItem)
+
+val greetings = listOf("We work everyday from 7AM to 8PM", "We look forward to seeing you!")
+
+val deals = mutableListOf(
+    DealsItem(imageResource = R.drawable.ic_members, text = "Members"),
+    DealsItem(imageResource = R.drawable.ic_ratings, text = "Deals Rating"),
+    DealsItem(imageResource = R.drawable.ic_buy_get, text = "Buy & Get"),
+    DealsItem(imageResource = R.drawable.ic_gifts, text = "Gifts"),
+    DealsItem(imageResource = R.drawable.ic_discounts, text = "Discounts"),
+    DealsItem(imageResource = R.drawable.ic_sales, text = "Sales")
+)
+
+val dealsComponentItem = DealsComponentItem(
+    titles = listOf("Achievements", "Available deals"),
+    deals = deals
+)

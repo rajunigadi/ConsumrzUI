@@ -26,7 +26,7 @@ import dev.raju.consumrz.ui.theme.CardBg
 import dev.raju.consumrz.ui.theme.ConsumrzUITheme
 
 @Composable
-fun ContactDataCard(
+fun CommunicationComponent(
     communications: List<CommunicationData>
 ) {
     LazyRow {
@@ -45,9 +45,9 @@ fun CommunicationCard(
         elevation = CardDefaults.cardElevation(2.dp),
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
-            .padding(vertical = 16.dp, horizontal = 4.dp)
+            .padding(vertical = 16.dp)
             .clickable {
-                // i am clicking
+
             }
     ) {
         Row(
@@ -88,6 +88,6 @@ fun CommunicationCard(
 @Composable
 fun ContactCardPreview() {
     ConsumrzUITheme {
-        ContactDataCard(communications)
+        CommunicationComponent(communications)
     }
 }

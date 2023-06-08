@@ -4,8 +4,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
@@ -19,23 +22,54 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import dev.raju.consumrz.ui.R
 import dev.raju.consumrz.ui.data.LoyaltyItem
+import dev.raju.consumrz.ui.data.loyaltyItems
 import dev.raju.consumrz.ui.data.regularLoyaltyItem
-import dev.raju.consumrz.ui.theme.CoinGradient
+import dev.raju.consumrz.ui.theme.CardBg
 import dev.raju.consumrz.ui.theme.ConsumrzUITheme
-import dev.raju.consumrz.ui.theme.PrimaryTextColor
 
-/**
- * Created by Rajashekhar Vanahalli on 05 June, 2023
- */
+@Composable
+fun LoyaltyComponent() {
+    Card(
+        colors = CardDefaults.cardColors(containerColor = CardBg),
+        elevation = CardDefaults.cardElevation(2.dp),
+        shape = RoundedCornerShape(8.dp),
+    ) {
+        Column {
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Loyalty Programs",
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(vertical = 8.dp),
+                    style = MaterialTheme.typography.titleLarge
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.ic_question),
+                    contentDescription = ""
+                )
+            }
+
+            LazyRow {
+                items(loyaltyItems) {
+                    LoyaltyCard(
+                        loyaltyItem = it,
+                    )
+                }
+            }
+        }
+    }
+}
+
 @Composable
 fun LoyaltyCard(
     loyaltyItem: LoyaltyItem,
@@ -160,8 +194,6 @@ fun LoyaltyCard(
 @Composable
 fun LoyaltyCardPreview() {
     ConsumrzUITheme {
-        LoyaltyCard(
-            loyaltyItem = regularLoyaltyItem,
-        )
+        LoyaltyComponent()
     }
 }

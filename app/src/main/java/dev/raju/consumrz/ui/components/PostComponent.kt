@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Card
@@ -27,12 +26,8 @@ import dev.raju.consumrz.ui.R
 import dev.raju.consumrz.ui.theme.CardBg
 import dev.raju.consumrz.ui.theme.ConsumrzUITheme
 
-/**
- * Created by Rajashekhar Vanahalli on 08 June, 2023
- */
 @Composable
 fun PostComponent() {
-    // Post section
     Card(
         colors = CardDefaults.cardColors(containerColor = CardBg),
         elevation = CardDefaults.cardElevation(2.dp),
@@ -84,91 +79,6 @@ fun PostComponent() {
                 modifier = Modifier
                     .align(Alignment.Start)
             )
-            /*Spacer(modifier = Modifier.padding(vertical = 16.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            val commentText = if (comments.isNotEmpty()) {
-                pluralStringResource(
-                    id = R.plurals.total_comments,
-                    count = comments.size,
-                    comments.size
-                )
-            } else {
-                stringResource(id = R.string.comments)
-            }
-            Text(
-                text = commentText,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(2.dp)
-            )
-
-            IconButton(
-                onClick = {
-                    navigator.navigate(
-                        AddCommentScreenDestination(
-                            postId = post.id,
-                            comment = null
-                        )
-                    )
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Add,
-                    contentDescription = "Add"
-                )
-            }
-        }
-
-        if (comments.isEmpty()) {
-            Column(
-                Modifier
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                Text(
-                    text = stringResource(R.string.no_comments_found),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-            }
-        } else {
-            Column(
-                Modifier
-                    .fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Top
-            ) {
-                LazyColumn(state = listState) {
-                    items(items = comments) { comment ->
-                        CommentItem(
-                            navigator = navigator,
-                            viewModel = viewModel,
-                            comment = comment,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 10.dp)
-                                .selectable(
-                                    selected = comment.id == selectedIndex,
-                                    onClick = {
-                                        selectedIndex =
-                                            if (selectedIndex != comment.id)
-                                                comment.id!! else -1
-                                        scope.launch {
-                                            snackbarHostState.showSnackbar("Selected index: $selectedIndex")
-                                        }
-                                        navigator.navigate(
-                                            AddCommentScreenDestination(
-                                                postId = post.id,
-                                                comment = comment
-                                            )
-                                        )
-                                    })
-                        )
-                    }
-                }
-            }
-        }*/
         }
     }
 }
