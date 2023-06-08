@@ -5,17 +5,24 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -26,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,12 +43,14 @@ import dev.raju.consumrz.ui.components.ConsumrzTopAppBar
 import dev.raju.consumrz.ui.components.ContactDataCard
 import dev.raju.consumrz.ui.components.DealsCard
 import dev.raju.consumrz.ui.components.LoyaltyCard
+import dev.raju.consumrz.ui.components.PostComponent
 import dev.raju.consumrz.ui.components.TopCard
 import dev.raju.consumrz.ui.data.communications
 import dev.raju.consumrz.ui.data.loyaltyItems
 import dev.raju.consumrz.ui.theme.CardBg
 import dev.raju.consumrz.ui.theme.ConsumrzUITheme
 import dev.raju.consumrz.ui.theme.SecondaryTextColor
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -147,6 +157,10 @@ fun MainScreen() {
                         }
                     }
                 }
+
+                Spacer(modifier = Modifier.padding(vertical = 16.dp))
+
+                PostComponent()
             }
         }
     }
