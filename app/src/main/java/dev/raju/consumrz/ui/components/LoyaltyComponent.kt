@@ -1,12 +1,15 @@
 package dev.raju.consumrz.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -80,7 +83,7 @@ fun LoyaltyCard(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
             .padding(end = 16.dp)
-            .wrapContentSize()
+            .size(width = 280.dp, height = 320.dp)
     ) {
         Column(
             Modifier
@@ -150,9 +153,7 @@ fun LoyaltyCard(
 
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceAround,
-                modifier = Modifier
-                    .wrapContentSize()
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Card(
                     colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -160,14 +161,17 @@ fun LoyaltyCard(
                     shape = RoundedCornerShape(8.dp),
                     modifier = Modifier
                         .padding(horizontal = 8.dp)
+                        .weight(2f)
+                        .clickable {
+
+                        }
                 ) {
                     Text(
                         text = "Join",
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .padding(8.dp)
-                            .align(Alignment.CenterHorizontally)
-                            .wrapContentSize(),
+                            .align(Alignment.CenterHorizontally),
                         style = MaterialTheme.typography.labelMedium
                     )
                 }
@@ -178,11 +182,16 @@ fun LoyaltyCard(
                     shape = RoundedCornerShape(8.dp),
                     modifier = Modifier
                         .padding(end = 8.dp)
+                        .clickable {
+
+                        }
                 ) {
                     Icon(
                         imageVector = Icons.Filled.ArrowForward,
                         contentDescription = "",
-                        modifier = Modifier.padding(4.dp)
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .size(16.dp)
                     )
                 }
             }

@@ -81,7 +81,7 @@ fun ItemComponent() {
 
 @Composable
 fun ConsumrzIconCard(
-    icon: Painter = painterResource(id = R.drawable.image),
+    icon: Painter = painterResource(id = R.drawable.ic_logo),
     cardBgColor: Color = Color.White
 ) {
     Card(
