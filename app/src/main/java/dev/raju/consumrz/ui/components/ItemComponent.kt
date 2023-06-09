@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -80,7 +81,7 @@ fun ItemComponent() {
 
 @Composable
 fun ConsumrzIconCard(
-    icon: Painter = painterResource(id = R.drawable.ic_new_logo),
+    icon: Painter = painterResource(id = R.drawable.image),
     cardBgColor: Color = Color.White
 ) {
     Card(
@@ -91,6 +92,8 @@ fun ConsumrzIconCard(
         Image(
             painter = icon,
             contentDescription = "",
+            modifier = Modifier
+                .size(64.dp)
         )
     }
 }
